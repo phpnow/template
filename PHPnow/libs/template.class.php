@@ -92,6 +92,10 @@ class template {
         $this->__cacheDir = dirname(dirname(__DIR__)) . self::DS . 'Runtime' . self::DS . 'cache';
     }
 
+    public function __set($var, $value) {
+        $this->assign($var, $value);
+    }
+
     /**
      * 配制模板目录
      * @access public
