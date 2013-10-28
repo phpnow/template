@@ -328,10 +328,12 @@ class template {
      */
     public function getConfig($key, $file = 'global') {
         if (!isset(self::$__config[$file])) {
-            $config = rtrim($this->__configDir, self::CHARLIST) . self::DS . $file . $this->__configSuffix;
-            if (!file_exists($config))
-                throw new \Exception('[' . $config . '] ' . $this->getLang(4));
-            self::$__config[$file] = parse_ini_file($config, false);
+            foreach ((array) $this->__configDir as $row) {
+                $config = rtrim($row, self::CHARLIST) . self::DS . $file . $this->__configSuffix;
+                if (file_exists($config))
+                    self::$__config[$file] = isset(self::$__config[$file]) ? array_merge(self::$__config[$file], parse_ini_file($config, false)) : parse_ini_file($config, false);
+                //throw new \Exception('[' . $config . '] ' . $this->getLang(4));
+            }
         }
         if (isset(self::$__config[$file][$key]))
             return self::$__config[$file][$key];
