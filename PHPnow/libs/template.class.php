@@ -202,7 +202,10 @@ class template {
         if (!file_exists($this->__cachingTemplate))
             $this->__isCaching = false;
         else {
-            $savet = filemtime($this->__cachingTemplate);
+            $this->getTemplateFile($template);
+            if (!file_exists($template))
+                throw new \Exception($this->getLang(0));
+            $savet = filemtime($template);
             $fromt = filemtime($this->__cachingTemplate);
             if ($savet > $fromt)
                 $this->__isCaching = false;
@@ -376,16 +379,20 @@ class template {
      * @return string
      */
     public function getTemplateFile(&$template) {
-        $template = str_replace(self:: CHARLIST, self::DS, $template);
-        if (file_exists($template))
-            return $template;
-        foreach ((array) $this->__templateDir as $row) {
-            $t = rtrim($row, self::CHARLIST) . self::DS . $template . $this->__templateSuffix;
-            if (file_exists($t)) {
-                return $template = $t;
+        static $templateFile = array();
+        if (isset($templateFile[$template]))
+            $template = $templateFile[$template];
+        else {
+            $template = str_replace(self:: CHARLIST, self::DS, $template);
+            if (file_exists($template))
+                return $template;
+            foreach ((array) $this->__templateDir as $row) {
+                $t = rtrim($row, self::CHARLIST) . self::DS . $template . $this->__templateSuffix;
+                if (file_exists($t)) {
+                    return $template = $templateFile[$template] = $t;
+                }
             }
         }
-        return $template = null;
     }
 
     /**
