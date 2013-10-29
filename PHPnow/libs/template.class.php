@@ -63,7 +63,7 @@ class template {
 //限制模板文件的大小 单位 M
     public $__templateMax = 1;
 //模板缓存过期时间,为-1，则设置缓存永不过期,0可以让缓存每次都重新生成
-    public $__acheLifetime = 0;
+    public $__acheLifetime = 3600;
 //是否自动开启缓存
     public $__autoCaching = true;
 //是否启动缓存
@@ -198,12 +198,11 @@ class template {
             $this->__cacheId = $cacheId;
         if ($this->__autoCaching)
             $this->__caching = true;
-        $this->__cachingTemplate? : ($this->__cachingTemplate = $this->getCacheFile($template));
+        $this->__cachingTemplate = $this->getCacheFile($template);
         if (!file_exists($this->__cachingTemplate))
             $this->__isCaching = false;
-
         else {
-            $savet = filemtime($template);
+            $savet = filemtime($this->__cachingTemplate);
             $fromt = filemtime($this->__cachingTemplate);
             if ($savet > $fromt)
                 $this->__isCaching = false;
@@ -245,6 +244,8 @@ class template {
             $this->mkRecur(dirname($cachingTemplate));
             file_put_contents($cachingTemplate, $content);
         }
+        $this->__isCaching = false;
+        $this->__caching = false;
         return $content;
     }
 
