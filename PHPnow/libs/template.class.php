@@ -178,10 +178,9 @@ class template {
      * 模板显示 调用内置的模板引擎显示方法，
      * @access public
      * @param string $template 指定要调用的模板文件
-     * @param string $suffix 模板后缀
      * @return void
      */
-    public function display($template = null) {
+    public function display($template) {
         echo $this->fetch($template);
     }
 
@@ -191,7 +190,7 @@ class template {
      * @param string $template 指定要调用的模板文件
      * @return boolean
      */
-    public function isCached($template = null, $cacheId = null) {
+    public function isCached($template, $cacheId = null) {
         if ($this->__debugging)
             return false;
         if ($cacheId !== null)
@@ -223,11 +222,9 @@ class template {
      *  获取输出页面内容
      * @access public
      * @param string $template 指定要调用的模板文件
-     * @param string $cacheId 缓存缓存识别ID
-     * @param string $suffix 模板后缀
      * @return string
      */
-    public function fetch($template = null) {
+    public function fetch($template) {
         $this->getTemplateFile($template);
         $this->__runtimeStart = microtime(true);
         ob_start();
