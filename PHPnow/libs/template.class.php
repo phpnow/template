@@ -175,9 +175,9 @@ class template {
     }
 
     /**
-     * 模板显示 调用内置的模板引擎显示方法，
+     * 模板显示
      * @access public
-     * @param string $template 指定要调用的模板文件
+     * @param string $template 指定要调用的模板文件 模板名称不含后缀
      * @return void
      */
     public function display($template) {
@@ -187,7 +187,7 @@ class template {
     /**
      * 检测缓存是否存在
      * @access public
-     * @param string $template 指定要调用的模板文件
+     * @param string $template 指定要调用的模板文件 模板名称不含后缀
      * @return boolean
      */
     public function isCached($template, $cacheId = null) {
@@ -221,7 +221,7 @@ class template {
     /**
      *  获取输出页面内容
      * @access public
-     * @param string $template 指定要调用的模板文件
+     * @param string $template 指定要调用的模板文件 模板名称不含后缀
      * @return string
      */
     public function fetch($template) {

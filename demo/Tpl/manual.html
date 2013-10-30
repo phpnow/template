@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="{$description}" />
+        <meta name="keywords" content="{$keywords}" />
+        <meta name="robots" content="ALL" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{$title}</title>
+        <link rel="stylesheet" type="text/css" href="css/manual.css">
+        <link rel="stylesheet" type="text/css" href="ueditor/third-party/SyntaxHighlighter/shCoreDefault.css"/>
+        <script src="js/vendor/jquery-1.10.2.min.js" type="text/javascript"></script>
+        <script type="text/javascript" charset="utf-8" src="ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                SyntaxHighlighter.highlight();
+            });
+        </script>
+    </head>
+    <body>
+        <a name="gotop" id="gotop"></a>
+        <div class="header">
+            <span class="nav"></span>
+
+        </div>
+        <div class="maincol">
+            <div class="col-left">
+                {loop="left"}                                                    
+                <h5><a href="?">{$value.title}</a></h5>
+                <ul class="sidebar">
+                    {loop="$document[$value.id]"}
+                    <li><a href="?d={$value.id|base64_encode}" title="{$value.title}">{$value.title}</a></li>
+                    {/loop}
+                </ul>
+                {/loop}
+            </div>
+            <div class="col-auto">
+                {if="!empty($list)"}
+                {$list.content}
+                
+                {else}
+                <p style="text-align:center"> <img src="img/logo.gif" width="203" height="51" border="0" hspace="0" vspace="0" title="PHPnow.cn"/> </p>
+                PHPnow是一个基于PHP的高效的PHP模板引擎，主要对于PHP程序的方面快速开发而设计,这意味着PHP代码与HTML是分开的,让程序员有足够的空间发挥编写程序,让网页设计师轻松维护模板代码，而不需要维护PHP与HTML混合的复杂代码,也不需要掌握PHP技术，从而促进程序员和设计师的快速开发/部署,PHPnow快速且易于维护，重点是永久免费开源
+                <br/>PHPnow template模板引擎永久开源和免费提供使用,请认准官方唯一指定域名：<a href="http://www.phpnow.cn" target="_blank">phpnow.cn</a>
+                <br/>我们最少每天都有更新欢迎获取最新代码<a href="https://github.com/phpnow/template" target="_blank">https://github.com/phpnow/template</a>
+                {/if}
+
+            </div>
+        </div>
+        <div class="footer"> &copy; {'Y'|date} PHPnow Email:admin@phpnow.cn <script type="text/javascript" src="http://tajs.qq.com/stats?sId=13238037" charset="UTF-8"></script></div>
+    </body>
+</html>

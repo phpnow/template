@@ -1,0 +1,28 @@
+<header class="header" role="banner">
+    <div class="wrapper clear">
+        <div class="logo">
+            <a href="/" class="logo" title="PHPnow"></a>
+        </div>
+        <nav class="nav" role="navigation">
+            <ul>
+                {loop="navigation"}
+                <li>
+                    <a href="{$key}" target="_blank">
+                        <i class="{$value.0}"></i>{$value.1}</a>
+                </li>
+                {/loop}
+            </ul>
+        </nav>
+        <h1 class="header--alpha alpha">简易、高效的PHP模板引擎，做一个干净的程序，从PHPnow开始</h1>
+        <div class="header__download">
+            <a class="header--btn btn-primary btn--icon" href="//github.com/phpnow/template/archive/{$version}.zip"  target="_blank">
+                <i class="icon-github"></i>Download {$version}</a><div class="header__git">
+                <input value="git clone https://github.com/phpnow/template.git" data-select>
+            </div>
+            <p class="header__maintained">基于PHP5的简易高效模板引擎</p>
+            <p class="header__share">环境要求:php5.3.0及以上版本,操作系统平台不限</p>
+            
+            <p class="header__share">强大的模板编译及静态处理技术,让程序员和设计师真正快速开发和部署</p>
+        </div>
+    </div>
+</header>
