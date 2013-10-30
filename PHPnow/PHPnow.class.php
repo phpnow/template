@@ -9,7 +9,7 @@
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'libs' . DIRECTORY_SEPARATOR . 'template.class.php';
 
 /**
- *引擎入口
+ * 引擎入口
  * @author sanliang
  */
 class PHPnow extends \PHPnow\template {

@@ -26,7 +26,8 @@ class compile {
         $content = preg_replace_callback("/##XML(.*?)XML##/s", array($this, 'xmlSubstitution'), $content);
         $this->compileTemplate($content);
         $content = "<?php class_exists('PHPnow')?:exit;?>" . $content;
-        echo $content;exit;
+        echo $content;
+        exit;
         $this->stripWhitespace($content);
     }
 
