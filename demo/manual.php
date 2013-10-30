@@ -2,7 +2,7 @@
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'PHPnow' . DIRECTORY_SEPARATOR . 'PHPnow.class.php';
 $tpl = new \PHPnow;
 
-$db = new \PDO('mysql:host=127.0.0.1;dbname=phpnow;charset=utf8', 'root', 'SAFEsafe520');
+$db = new \PDO('mysql:host=127.0.0.1;dbname=phpnow;charset=utf8', 'root', '123');
 if (!empty($_GET['d']) && preg_match('/^[1-9][0-9]*$/', base64_decode($_GET['d']))) {
     $sql = "SELECT
 *
